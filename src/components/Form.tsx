@@ -28,11 +28,48 @@ export default function Form() {
                     ))}
                 </select>
             </div>
-            
+
             <div
                 className="grid grid-cols-1 gap-3"
             >
+                <label
+                    htmlFor="activity"
+                    className="font-bold"
+                >
+                    Actividad:
+                </label>
+
+                <input
+                    id="activity"
+                    type="text"
+                    className="bg-gray-800 text-gray-300 border border-slate-300 p-2 rounded-lg w-full"
+                    placeholder="Indica que Actividad has Realizado"
+                />
             </div>
+
+            <div
+                className="grid grid-cols-1 gap-3"
+            >
+                <label htmlFor="calories"
+
+                    className="font-bold"
+                >
+                    Calorias:
+                </label>
+
+                <input
+                    id="calories"
+                    type="number"
+                    className="bg-gray-800 text-gray-300 border border-slate-300 p-2 rounded-lg w-full"
+                    placeholder="Indica la Cantidad de Calorias. Ej: 300 o 500"
+                />
+            </div>
+
+            <input
+                type="submit"
+                className="bg-gray-800 hover:bg-gray-900 w-full text-gray-300 p-2 border border-slate-300 rounded-lg cursor-pointer uppercase"
+                value='Guardar Comida o Guardar Ejercicio'
+            />
         </form>
     )
 }
