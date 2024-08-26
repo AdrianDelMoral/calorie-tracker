@@ -22,7 +22,7 @@ function App() {
       <section className="bg-amber-700 py-20 px-5">
         <div className="max-w-4xl mx-auto">
           <Form
-          dispatch={dispatch}
+            dispatch={dispatch}
           />
         </div>
       </section>

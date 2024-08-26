@@ -32,7 +32,8 @@ export default function Form({ dispatch }: FormProps) {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => { // FormEvent<HTMLFormElement> es para poder gestionar el formulario
         e.preventDefault()
-
+        
+        // Se evalua el form, y si pasa: manda llamar el 'save-activity'
         dispatch({ type: "save-activity", payload: { newActivity: activity } })
     }
 

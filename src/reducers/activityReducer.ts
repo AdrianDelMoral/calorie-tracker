@@ -3,7 +3,7 @@ import { Activity } from "../types"
 export type ActivityActions = 
     {
         type: 'save-activity' /* Una vez hayamos enviado el formulario, ejecutará el type de "save-activity" */,
-        payload: { newActivity: Activity }
+        payload: { newActivity: Activity } // payload: son los datos del formulario, y el "Activity" es la forma la cual tiene que tener, el tipo
     }
 
 type ActivityState = {
@@ -11,7 +11,7 @@ type ActivityState = {
 }
 
 export const initialState : ActivityState = {
-    activities: [] // inicia como un array vacio, y como vaya agregando el usuario, se irá rellenando
+    activities: [], // inicia como un array vacio, y como vaya agregando el usuario, se irá rellenando
 }
 
 export const activityReducer = (
@@ -20,6 +20,10 @@ export const activityReducer = (
 ) => {
     if(action.type === 'save-activity'){ // Una vez que yo mande a llamar, la acción de arriba "save-activity" va a escanear nuestro código y va a buscar ese mismo type para ejecutar ese código.
         // Este código maneja la lógica para actualizar el state
-        console.log('Desde el type de save-activity');
+
+        return {
+            ...state, // copia del state para asi tener todas las actividades
+            activities: [ ...state.activities,action.payload.newActivity ]
+        }
     }
 }
