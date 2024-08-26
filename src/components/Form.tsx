@@ -1,8 +1,13 @@
-import { useState, ChangeEvent, FormEvent } from "react"
+import { useState, ChangeEvent, FormEvent, Dispatch } from "react"
 import { Activity } from "../types"
 import { categories } from "../data/categories"
+import { ActivityActions } from "../reducers/activityReducer"
 
-export default function Form() {
+type FormProps = {
+    dispatch: Dispatch<ActivityActions> // Saber la información de qué acciones tiene el reducer que lo ha creado
+}
+
+export default function Form({ dispatch }: FormProps) {
 
     // definiremos uno para cada tipo de form que tendremos
     const [activity, setActivity] = useState<Activity>({
@@ -27,7 +32,8 @@ export default function Form() {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => { // FormEvent<HTMLFormElement> es para poder gestionar el formulario
         e.preventDefault()
-        console.log('Su bmit...');
+
+        dispatch({ type: "save-activity", payload: { newActivity: activity } })
     }
 
     return (

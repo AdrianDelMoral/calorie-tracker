@@ -1,6 +1,12 @@
+import { useReducer } from "react"
 import Form from "./components/Form"
+import { activityReducer, initialState } from "./reducers/activityReducer"
 
 function App() {
+
+  /* función especial que nos permite ejecutar las activityActions */
+  // Toma dos valores iniciales
+  const [state, dispatch] = useReducer(activityReducer, initialState)
 
   return (
     <>
@@ -12,10 +18,12 @@ function App() {
 
         </div>
       </header>
-      
+
       <section className="bg-amber-700 py-20 px-5">
         <div className="max-w-4xl mx-auto">
-          <Form/>
+          <Form
+          dispatch={dispatch}
+          />
         </div>
       </section>
     </>
