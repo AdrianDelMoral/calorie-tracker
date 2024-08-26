@@ -5,9 +5,6 @@ import { categories } from "../data/categories"
 export default function Form() {
 
     // definiremos uno para cada tipo de form que tendremos
-    /* const [category, setCategory] = useState('')
-    const [activity, setActivity] = useState('')
-    const [calories, setCalories] = useState('') */
     const [activity, setActivity] = useState<Activity>({
         category: 1,
         name: '',
@@ -30,7 +27,7 @@ export default function Form() {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => { // FormEvent<HTMLFormElement> es para poder gestionar el formulario
         e.preventDefault()
-        console.log('Submit...');
+        console.log('Su bmit...');
     }
 
     return (
