@@ -6,22 +6,21 @@ import { ActivityActions } from "../reducers/activityReducer"
 type FormProps = {
     dispatch: Dispatch<ActivityActions> // Saber la información de qué acciones tiene el reducer que lo ha creado
 }
+const initialState = {
+    category: 1,
+    name: '',
+    calories: 0,
+}
 
 export default function Form({ dispatch }: FormProps) {
 
     // definiremos uno para cada tipo de form que tendremos
-    const [activity, setActivity] = useState<Activity>({
-        category: 1,
-        name: '',
-        calories: 0,
-    })
+    const [activity, setActivity] = useState<Activity>(initialState)
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
-        const isNumberField = ['category', 'calories'].includes(e.target.id) // Indicará si lo que recibe es un numero o un string
-
         setActivity({
             ...activity, // escribimos los campos enteros de la actividad que no han cambiado, y se añaden
-            [e.target.id]: isNumberField ? +e.target.value : e.target.value
+            [e.target.id]: e.target.value
         })
     }
 
@@ -32,9 +31,11 @@ export default function Form({ dispatch }: FormProps) {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => { // FormEvent<HTMLFormElement> es para poder gestionar el formulario
         e.preventDefault()
-        
+
         // Se evalua el form, y si pasa: manda llamar el 'save-activity'
         dispatch({ type: "save-activity", payload: { newActivity: activity } })
+        // Resetear el formulario
+        setActivity(initialState)
     }
 
     return (
