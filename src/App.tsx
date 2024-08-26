@@ -1,12 +1,13 @@
 import { useReducer } from "react"
 import Form from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activityReducer"
+import ActivityList from "./components/ActivityList";
 
 function App() {
 
   /* función especial que nos permite ejecutar las activityActions */
   // Toma dos valores iniciales
-  const [state, dispatch] = useReducer(activityReducer, initialState)
+  const [state, dispatch] = useReducer(activityReducer, initialState) // dispatch: mandar a llamar las acciones, y state siempre retorna el estado del reducer(Formulario)
 
   return (
     <>
@@ -25,6 +26,10 @@ function App() {
             dispatch={dispatch}
           />
         </div>
+      </section>
+
+      <section className="p-10 mx-auto max-w-4xl">
+        <ActivityList activities={state.activities}/>
       </section>
     </>
   )
