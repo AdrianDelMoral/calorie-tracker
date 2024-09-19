@@ -1,17 +1,21 @@
 import { Activity } from "../types"
 
+/*
+    type: Una vez hayamos enviado el formulario, ejecutará el type de "save-activity"
+    payload: payload: son los datos del formulario, y el "Activity" es la forma la cual tiene que tener, el tipo 
+*/
 export type ActivityActions = 
-    {
-        type: 'save-activity' /* Una vez hayamos enviado el formulario, ejecutará el type de "save-activity" */,
-        payload: { newActivity: Activity } // payload: son los datos del formulario, y el "Activity" es la forma la cual tiene que tener, el tipo
-    }
+    { type: 'save-activity', payload: { newActivity: Activity } } | // cuando genero actividad nueva, debo generar una actividad nueva
+    { type: 'set-activeId', payload: { id: Activity['id'] } } // Pero cuando voy a setear cual elemento está activo para editar, le paso solo el id
 
 type ActivityState = {
-    activities: Activity[]
+    activities: Activity[],
+    activeId: Activity['id']
 }
 
 export const initialState : ActivityState = {
     activities: [], // inicia como un array vacio, y como vaya agregando el usuario, se irá rellenando
+    activeId: ''
 }
 
 export const activityReducer = (
@@ -26,4 +30,12 @@ export const activityReducer = (
             activities: [ ...state.activities,action.payload.newActivity ]
         }
     }
+    if (action.type == 'set-activeId') {
+        return {
+            ...state, // las diferentes actividades que esten se añaden
+            activeId: action.payload.id
+        }
+    }
+
+    return state
 }
