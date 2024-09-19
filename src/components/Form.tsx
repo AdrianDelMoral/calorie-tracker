@@ -1,12 +1,13 @@
-import { useState, ChangeEvent, FormEvent, Dispatch } from "react"
+import { useState, ChangeEvent, FormEvent, Dispatch, useEffect } from "react"
 import { v4 as uuidv4 } from 'uuid' // instalar uuid: "npm i uuid"
 
 import { categories } from "../data/categories"
 import { Activity } from "../types"
-import { ActivityActions } from "../reducers/activityReducer"
+import { ActivityActions, ActivityState } from "../reducers/activityReducer"
 
 type FormProps = {
-    dispatch: Dispatch<ActivityActions> // Saber la información de qué acciones tiene el reducer que lo ha creado
+    dispatch: Dispatch<ActivityActions>, // Saber la información de qué acciones tiene el reducer que lo ha creado
+    state: ActivityState
 }
 const initialState: Activity = {
     id: uuidv4(),
@@ -15,10 +16,17 @@ const initialState: Activity = {
     calories: 0,
 }
 
-export default function Form({ dispatch }: FormProps) {
+export default function Form({ dispatch, state }: FormProps) {
 
     // definiremos uno para cada tipo de form que tendremos
     const [activity, setActivity] = useState<Activity>(initialState)
+
+    useEffect(() => {
+        if (state.activeId) {
+            const selectedActivity = state.activities.filter( stateActivity => stateActivity.id === state.activeId)[0]
+            setActivity(selectedActivity)
+        }
+    }, [state.activeId])
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
         setActivity({

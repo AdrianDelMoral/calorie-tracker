@@ -8,7 +8,7 @@ export type ActivityActions =
     { type: 'save-activity', payload: { newActivity: Activity } } | // cuando genero actividad nueva, debo generar una actividad nueva
     { type: 'set-activeId', payload: { id: Activity['id'] } } // Pero cuando voy a setear cual elemento está activo para editar, le paso solo el id
 
-type ActivityState = {
+export type ActivityState = {
     activities: Activity[],
     activeId: Activity['id']
 }
