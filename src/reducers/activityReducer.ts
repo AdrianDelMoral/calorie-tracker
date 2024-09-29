@@ -5,8 +5,9 @@ import { Activity } from "../types"
     payload: payload: son los datos del formulario, y el "Activity" es la forma la cual tiene que tener, el tipo 
 */
 export type ActivityActions = 
-    { type: 'save-activity', payload: { newActivity: Activity } } | // cuando genero actividad nueva, debo generar una actividad nueva
-    { type: 'set-activeId', payload: { id: Activity['id'] } } // Pero cuando voy a setear cual elemento está activo para editar, le paso solo el id
+    { type: 'save-activity', payload: { newActivity: Activity } } | // Acción para generar una actividad nueva
+    { type: 'set-activeId', payload: { id: Activity['id'] } } | // Acción para setear cual elemento está activo para editar, le paso solo el id
+    { type: 'delete-activity', payload: { id: Activity['id'] } } // Acción para eliminar la actividad
 
 export type ActivityState = {
     activities: Activity[],
@@ -40,10 +41,18 @@ export const activityReducer = (
             activeId: '' // reiniciamos el activeId cada vez que el formulario le demos al "Guardar"
         }
     }
+
     if (action.type == 'set-activeId') {
         return {
             ...state, // las diferentes actividades que esten se añaden
             activeId: action.payload.id
+        }
+    }
+    
+    if (action.type == 'delete-activity') {
+        return {
+            ...state, // creamos una copia del state
+            activities: state.activities.filter(activity => activity.id !== action.payload.id) // accedemos a cada actividad con "filter", y indicamos a la que sean diferentes a la que queremos borrar con "activity.id"
         }
     }
 
