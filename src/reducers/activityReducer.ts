@@ -7,15 +7,21 @@ import { Activity } from "../types"
 export type ActivityActions = 
     { type: 'save-activity', payload: { newActivity: Activity } } | // Acción para generar una actividad nueva
     { type: 'set-activeId', payload: { id: Activity['id'] } } | // Acción para setear cual elemento está activo para editar, le paso solo el id
-    { type: 'delete-activity', payload: { id: Activity['id'] } } // Acción para eliminar la actividad
+    { type: 'delete-activity', payload: { id: Activity['id'] } } | // Acción para eliminar la actividad
+    { type: 'restart-app' } 
 
 export type ActivityState = {
     activities: Activity[],
     activeId: Activity['id']
 }
 
+const localStorageActivities = () : Activity[] => { // Indicamos que es un arreglo de tipo Activity
+    const activities = localStorage.getItem('activities')
+    return activities ? JSON.parse(activities) : []
+}
+
 export const initialState : ActivityState = {
-    activities: [], // inicia como un array vacio, y como vaya agregando el usuario, se irá rellenando
+    activities: localStorageActivities(), // Obtiene según la función "localStorageActivities", las actividades si ya tenemos creadas, si no creará un array vacío
     activeId: ''
 }
 
@@ -53,6 +59,13 @@ export const activityReducer = (
         return {
             ...state, // creamos una copia del state
             activities: state.activities.filter(activity => activity.id !== action.payload.id) // accedemos a cada actividad con "filter", y indicamos a la que sean diferentes a la que queremos borrar con "activity.id"
+        }
+    }
+    
+    if (action.type == 'restart-app') {
+        return {
+            activities: [],
+            activeId: ''
         }
     }
 
