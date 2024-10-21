@@ -3,6 +3,7 @@ import Form from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activityReducer"
 import { ArrowPathIcon } from '@heroicons/react/24/outline' /* Comand para instalar --> npm i @heroicons/react */
 import ActivityList from "./components/ActivityList";
+import CalorieTracker from "./components/CalorieTracker";
 
 function App() {
 
@@ -46,6 +47,15 @@ function App() {
             state={state}
           />
         </div>
+      </section>
+
+      <section className="bg-gray-800 py-10">
+        <div className="max-w-4xl mx-auto">
+          <CalorieTracker
+            activities={state.activities}
+          />
+        </div>
+
       </section>
 
       <section className="p-10 mx-auto max-w-4xl">
