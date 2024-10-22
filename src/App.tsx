@@ -36,7 +36,6 @@ function App() {
             />
             <p>Reset App</p>
           </button>
-
         </div>
       </header>
 
