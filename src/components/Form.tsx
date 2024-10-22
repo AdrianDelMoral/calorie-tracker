@@ -23,17 +23,18 @@ export default function Form({ dispatch, state }: FormProps) {
 
     useEffect(() => {
         if (state.activeId) {
-            const selectedActivity = state.activities.filter( stateActivity => stateActivity.id === state.activeId)[0]
+            const selectedActivity = state.activities.filter(stateActivity => stateActivity.id === state.activeId)[0]
             setActivity(selectedActivity)
         }
     }, [state.activeId])
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
+        const isNumberField = ['category', 'calories'].includes(e.target.id);
         setActivity({
-            ...activity, // escribimos los campos enteros de la actividad que no han cambiado, y se añaden
-            [e.target.id]: e.target.value
-        })
-    }
+            ...activity,
+            [e.target.id]: isNumberField ? +e.target.value : e.target.value,
+        });
+    };
 
     const isValidActivity = () => {
         const { name, calories } = activity
@@ -44,7 +45,15 @@ export default function Form({ dispatch, state }: FormProps) {
         e.preventDefault()
 
         // Se evalua el form, y si pasa: manda llamar el 'save-activity'
-        dispatch({ type: "save-activity", payload: { newActivity: activity } })
+        dispatch({
+            type: "save-activity",
+            payload: {
+                newActivity: {
+                ...activity,
+                calories: parseInt(activity.calories.toString())
+            },
+            },
+        })
         // Resetear el formulario
         setActivity({
             ...initialState,

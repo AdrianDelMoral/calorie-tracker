@@ -8,7 +8,7 @@ export type ActivityActions =
     { type: 'save-activity', payload: { newActivity: Activity } } | // Acción para generar una actividad nueva
     { type: 'set-activeId', payload: { id: Activity['id'] } } | // Acción para setear cual elemento está activo para editar, le paso solo el id
     { type: 'delete-activity', payload: { id: Activity['id'] } } | // Acción para eliminar la actividad
-    { type: 'restart-app' } 
+    { type: 'restart-app' }  // Acción para reiniciar la aplicación
 
 export type ActivityState = {
     activities: Activity[],
@@ -48,21 +48,21 @@ export const activityReducer = (
         }
     }
 
-    if (action.type == 'set-activeId') {
+    if (action.type === 'set-activeId') {
         return {
             ...state, // las diferentes actividades que esten se añaden
             activeId: action.payload.id
         }
     }
     
-    if (action.type == 'delete-activity') {
+    if (action.type === 'delete-activity') {
         return {
             ...state, // creamos una copia del state
             activities: state.activities.filter(activity => activity.id !== action.payload.id) // accedemos a cada actividad con "filter", y indicamos a la que sean diferentes a la que queremos borrar con "activity.id"
         }
     }
     
-    if (action.type == 'restart-app') {
+    if (action.type === 'restart-app') {
         return {
             activities: [],
             activeId: ''

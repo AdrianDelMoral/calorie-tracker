@@ -29,7 +29,7 @@ function App() {
           <button
             className="flex items-center space-x-4 text-black font-bold border border-black rounded-lg px-3 py-2 bg-slate-300 hover:bg-gray-600 hover:text-white hover:transition-all disabled:opacity-10"
             disabled={!canRestartApp()}
-            onClick={() => dispatch({ type: "restart-app"})}
+            onClick={() => dispatch({ type: "restart-app" })}
           >
             <ArrowPathIcon
               className="h-8 w-8"
@@ -49,13 +49,12 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-gray-800 py-10">
-        <div className="max-w-4xl mx-auto">
+      <section className='bg-gray-800 py-10'>
+        <div className='max-w-4xl mx-auto'>
           <CalorieTracker
             activities={state.activities}
           />
         </div>
-
       </section>
 
       <section className="p-10 mx-auto max-w-4xl">
