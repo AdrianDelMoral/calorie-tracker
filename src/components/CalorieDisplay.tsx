@@ -5,11 +5,11 @@ type CalorieDisplayProps = {
 
 export default function CalorieDisplay({ calories, text }: CalorieDisplayProps) {
     return (
-        <p className='text-white font-bold rounded-full grid grid-cols-1 gap-3 text-center'>
-            <span className='font-black text-6xl text-orange'>
+        <p className='text-green-600 grid grid-cols-2 py-2 items-center'>
+            {text}
+            <span className='text-xl text-orange text-end'>
                 {calories}
             </span>
-            {text}
         </p>
     )
 }

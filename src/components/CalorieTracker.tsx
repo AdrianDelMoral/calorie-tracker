@@ -17,20 +17,20 @@ export default function CalorieTracker({ activities }: CalorieTrackerProps) {
 
     return (
         <>
-            <h2 className='text-4xl font-black text-white text-center'>Resumen de Calorias</h2>
-            <div className='flex flex-col items-center md:flex-row md:justify-between gap-5 mt-10'>
+            <h2 className='text-3xl font-black text-green-600 text-start my-10'>Resumen de Calorias</h2>
+            <div className='grid items-center gap-3 divide-y divide-green-500/50'>
                 <CalorieDisplay
-                    text="Consumidas"
+                    text="Calorias Consumidas"
                     calories={caloriesConsumed}
                 />
 
                 <CalorieDisplay
-                    text="Quemadas"
+                    text="Calorias Quemadas"
                     calories={caloriesBurned}
                 />
 
                 <CalorieDisplay
-                    text="Diferencia"
+                    text="Deficit Calorico"
                     calories={netCalories}
                 />
             </div>

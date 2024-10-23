@@ -25,25 +25,27 @@ export default function ActivityList({ activities, dispatch }: ActivityListProps
             {isEmptyActivities ?
                 <p className="text-center my-5 text-slate-600 font-semibold text-xl">No hay actividades aún...</p> :
                 activities.map(activity => (
-                    <div key={activity.id} className="px-5 py-10 bg-white mt-10 flex justify-between shadow-lg">
-                        <div className="space-y-2 relative">
-                            <p className={`absolute -top-8 -left-8 px-10 py-2 text-white uppercase font-bold 
-                                ${+activity.category === 1 ? 'bg-lime-500' : 'bg-orange-500'}`}>
+                    <div key={activity.id} className={`p-5 bg-white mt-10 flex flex-row justify-between shadow-lg items-center max-w-lg mx-auto border rounded-xl
+                                ${+activity.category === 1 ? 'text-lime-500' : 'text-red-500'} ${+activity.category === 1 ? 'bg-lime-100' : 'bg-red-100'}`}>
+                        {/* Tipo de actividad */}
+                        {/* <p className={`absolute -top-8 -left-8 px-10 py-2 text-white uppercase font-bold 
+                                ${+activity.category === 1 ? 'bg-lime-500' : 'bg-red-500'}`}>
                                 {categoryName(+activity.category)}
-                            </p>
-                            <p className="text-2xl font-bold pt-5">{activity.name}</p>
-                            <p className="font-black text-4xl text-lime-500">
-                                {activity.calories} {''}
-                                <span>Calorias</span>
-                            </p>
-                        </div>
+                            </p> */}
+                        {/* Nombre de actividad */}
+                        <p>{activity.name}</p>
+                        {/* Cantidad de Calorias */}
+                        <p className={`font-bold`}>
+                            {activity.calories} {''}
+                            <span>Calorias</span>
+                        </p>
 
-                        <div className="flex gap-5 items-center cursor-pointer">
+                        <div className="flex gap-14 items-center cursor-pointer">
                             <button
                                 onClick={() => dispatch({ type: "set-activeId", payload: { id: activity.id } })}
                             >
                                 <PencilSquareIcon
-                                    className="h-8 w-8 text-blue-500"
+                                    className="h-6 w-6 text-lime-500"
                                 />
                             </button>
 
@@ -51,7 +53,7 @@ export default function ActivityList({ activities, dispatch }: ActivityListProps
                                 onClick={() => dispatch({ type: "delete-activity", payload: { id: activity.id } })}
                             >
                                 <XCircleIcon
-                                    className="h-8 w-8 text-red-500"
+                                    className="h-6 w-6 text-red-500"
                                 />
                             </button>
                         </div>

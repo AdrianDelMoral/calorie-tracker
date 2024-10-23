@@ -20,41 +20,45 @@ function App() {
 
   return (
     <>
-      <header className="bg-amber-800 py-3">
+      <header className="bg-lime-800 py-3">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <h1 className="text-center text-lg font-bold text-white uppercase">
-            Contador de Calorias
-          </h1>
+          <div className="flex items-center gap-5">
+            <img src="./calories-calculator.png" alt="" className="w-8 h-8" />
+
+            <h1 className="text-center text-lg font-bold text-white uppercase">
+              Contador de Calorias
+            </h1>
+          </div>
 
           <button
-            className="flex items-center space-x-4 text-black font-bold border border-black rounded-lg px-3 py-2 bg-slate-300 hover:bg-gray-600 hover:text-white hover:transition-all disabled:opacity-10"
+            className="flex items-center space-x-4 text-white font-bold rounded-3xl px-3 py-2 hover:bg-teal-700 hover:text-white hover:transition-all disabled:opacity-10"
             disabled={!canRestartApp()}
             onClick={() => dispatch({ type: "restart-app" })}
           >
             <ArrowPathIcon
-              className="h-8 w-8"
+              className="h-6 w-6"
             />
             <p>Reset App</p>
           </button>
         </div>
       </header>
 
-      <section className="bg-amber-700 py-20 px-5">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-20 mx-auto">
+        <div className="mx-auto max-w-6xl grid grid-cols-2 gap-20">
           <Form
             dispatch={dispatch}
             state={state}
           />
+
+          <div className='w-full'>
+            <CalorieTracker
+              activities={state.activities}
+            />
+          </div>
         </div>
       </section>
 
-      <section className='bg-gray-800 py-10'>
-        <div className='max-w-4xl mx-auto'>
-          <CalorieTracker
-            activities={state.activities}
-          />
-        </div>
-      </section>
+
 
       <section className="p-10 mx-auto max-w-4xl">
         <ActivityList
