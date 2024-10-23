@@ -26,12 +26,7 @@ export default function ActivityList({ activities, dispatch }: ActivityListProps
                 <p className="text-center my-5 text-slate-600 font-semibold text-xl">No hay actividades aún...</p> :
                 activities.map(activity => (
                     <div key={activity.id} className={`p-5 bg-white mt-10 flex flex-row justify-between shadow-lg items-center max-w-lg mx-auto border rounded-xl
-                                ${+activity.category === 1 ? 'text-lime-500' : 'text-red-500'} ${+activity.category === 1 ? 'bg-lime-100' : 'bg-red-100'}`}>
-                        {/* Tipo de actividad */}
-                        {/* <p className={`absolute -top-8 -left-8 px-10 py-2 text-white uppercase font-bold 
-                                ${+activity.category === 1 ? 'bg-lime-500' : 'bg-red-500'}`}>
-                                {categoryName(+activity.category)}
-                            </p> */}
+                                ${+activity.category === 1 ? 'text-lime-500' : 'text-red-500'} ${+activity.category === 1 ? 'bg-lime-200' : 'bg-red-200'}`}>
                         {/* Nombre de actividad */}
                         <p>{activity.name}</p>
                         {/* Cantidad de Calorias */}
