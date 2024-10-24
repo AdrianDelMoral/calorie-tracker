@@ -1,5 +1,5 @@
 import { Activity } from "../types"
-import { categories } from "../data/categories"
+/* import { categories } from "../data/categories" */
 import { useMemo, Dispatch } from "react"
 import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline' /* Comand para instalar --> npm i @heroicons/react */
 import { ActivityActions } from "../reducers/activityReducer"
@@ -11,7 +11,7 @@ type ActivityListProps = {
 
 export default function ActivityList({ activities, dispatch }: ActivityListProps) {
 
-    const categoryName = useMemo(() => (category: Activity['category']) => categories.map(cat => cat.id === category ? cat.name : ''), [activities])
+    /* const categoryName = useMemo(() => (category: Activity['category']) => categories.map(cat => cat.id === category ? cat.name : ''), [activities]) */
 
     const isEmptyActivities = useMemo(() => activities.length === 0, [activities])
 
